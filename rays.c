@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:25:22 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/05 14:32:02 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/05 17:31:54 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void    cast_rays()
         g_ray[strip_id].ray_angle = normalize_angle(ray_angle);
         handle_rays(strip_id);
         draw_single_ray(strip_id);
-        ray_angle += FOV_ANGLE / NUM_RAYS;
+        ray_angle += (float)FOV_ANGLE / (float)NUM_RAYS;
         strip_id++;
     }
 }

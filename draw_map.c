@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 23:27:50 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/05 14:30:55 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/05 17:29:52 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,50 +42,44 @@ int    wall_check(float x, float y)
 
 void    draw_squar(int x, int y, int color)
 {
-    int tmp = y;
-    int i = 0;
-    int j = 0;
-    while (i <= TILE_SIZE && x < WINDOW_WIDTH && y < WINDOW_HEIGHT)
+    int i;
+    int j;
+
+    j = y;
+    while (j < y + TILE_SIZE)
     {
-        while (j <= TILE_SIZE)
+        i = x;
+        while (i < x + TILE_SIZE)
         {
-            //mlx_pixel_put(g_data->ptr, g_data->win, x, y, color);
-            g_data->matrix[((int)y * WINDOW_WIDTH) + (int)x] = color;
-            j++;
-            y++;
+            g_data->matrix[((int)j * WINDOW_WIDTH + (int)i)] = color;
+            i++;
         }
-        j = 0;
-        i++;
-        x++;
-        y = tmp;
+        j++;
     }
+    
 }
 
-void draw_map()
+void    draw_map()
 {
-	int i;
-	int j;
-	int x;
-	int y;
+    int i;
+    int j;
+    int x;
+    int y;
+    int color;
 
-	i = 0;
-	j = 0;
-	x = 0;
-	y = 0;
-	while (y <= WINDOW_HEIGHT)
-	{
-		while (x <= WINDOW_WIDTH)
-		{
-			if (map[i][j] == 1)
-				draw_squar(x, y, 0xFFFFFF);
-            else
-                draw_squar(x, y, 0x000000);
-			x+=TILE_SIZE;
-			j++;
-		}
-		j = 0;
-		x = 0;
-		y += TILE_SIZE;
-		i++;
-	}
+    i = 0;
+    j = 0;
+    while (j < MAP_NUM_ROWS)
+    {
+        i = 0;
+        while (i < MAP_NUM_COLS)
+        {
+            x = i * TILE_SIZE;
+            y = j * TILE_SIZE;
+            color = map[j][i] == 1 ? 0xFFFFFF : 0x000000;
+            draw_squar(x, y, color);
+            i++;
+        }
+        j++;
+    }
 }

@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 09:09:05 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/05 11:55:19 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/05 16:47:10 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define MAP_NUM_COLS 29
 # define WINDOW_WIDTH (MAP_NUM_COLS * TILE_SIZE)
 # define WINDOW_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
-# define FOV_ANGLE (60 * (M_PI / 180))
+# define FOV_ANGLE (60 * RAD)
 # define NUM_RAYS WINDOW_WIDTH
 # define INT_MAX 2147483647
 
@@ -51,7 +51,7 @@ typedef struct s_ray
 	int		wall_facing_left;
 	int		wall_facing_right;
 	int		wall_hit_content;
-}				t_ray[NUM_RAYS];
+}				t_ray;
 
 typedef struct s_player
 {
@@ -69,7 +69,9 @@ typedef struct	s_struct
 	void	*ptr;
 	void	*win;
 	void	*image;
+	void	*image3d;
 	int		*matrix;
+	int		*matrix3d;
 	int		bits_per_pixel;
 	int		size_line;
 	int		endian;
@@ -77,7 +79,7 @@ typedef struct	s_struct
 
 t_struct	*g_data;
 t_player	*g_player;
-t_ray		g_ray;
+t_ray		g_ray[NUM_RAYS];
 
 int     check_folder(char *str);
 int     handle_argv(char *str);
@@ -89,6 +91,7 @@ int     keypress(int keycode);
 void    initialize_player();
 void    draw_map();
 void    draw_squar(int x, int y, int color);
+void	three_d();
 int		loop();
 void    move_player();
 void	draw_player();
