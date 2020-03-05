@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:25:22 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/05 13:26:47 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/05 14:32:02 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ void    draw_single_ray(int strip_id)
     i = 0;
     x = g_player->x;
     y = g_player->y;
-    while (i <= g_ray[strip_id].distance)
+    while (i <= g_ray[strip_id].distance && x < WINDOW_WIDTH && y < WINDOW_HEIGHT)
     {
-        mlx_pixel_put(g_data->ptr, g_data->win, x, y, 0xE84118);
+        g_data->matrix[((int)y * WINDOW_WIDTH) + (int)x] = 0xE84118;
         x += cosf(g_ray[strip_id].ray_angle);
         y += sinf(g_ray[strip_id].ray_angle);
         i++;

@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 23:27:50 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/05 12:30:53 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/05 14:30:55 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,12 @@ void    draw_squar(int x, int y, int color)
     int tmp = y;
     int i = 0;
     int j = 0;
-    while (i <= TILE_SIZE)
+    while (i <= TILE_SIZE && x < WINDOW_WIDTH && y < WINDOW_HEIGHT)
     {
         while (j <= TILE_SIZE)
         {
-            mlx_pixel_put(g_data->ptr, g_data->win, x, y, color);
-            //g_data->matrix[((int)y * WINDOW_WIDTH) + (int)x] = color;
+            //mlx_pixel_put(g_data->ptr, g_data->win, x, y, color);
+            g_data->matrix[((int)y * WINDOW_WIDTH) + (int)x] = color;
             j++;
             y++;
         }

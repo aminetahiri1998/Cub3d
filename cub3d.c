@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 09:07:34 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/05 13:26:56 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/05 14:33:40 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void    initialize_player()
     g_player->turn_d = 0;
     g_player->walk_d = 0;
     g_player->angle = (30 * RAD);
-    g_player->turn_spd = 10 * RAD;
-    g_player->walk_spd = 5;
+    g_player->turn_spd = 3 * RAD;
+    g_player->walk_spd = 1.5;
     
 }
 
@@ -49,7 +49,7 @@ int		main(/*int argc, char **argv*/)
     g_data->ptr = mlx_init();
 	g_data->win = mlx_new_window(g_data->ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d");
     g_data->image = mlx_new_image(g_data->ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-    //g_data->matrix = (int*)mlx_get_data_addr(g_data->image, &g_data->bits_per_pixel, &g_data->size_line, &g_data->endian);
+    g_data->matrix = (int*)mlx_get_data_addr(g_data->image, &g_data->bits_per_pixel, &g_data->size_line, &g_data->endian);
     mlx_hook(g_data->win, 2, 0, keypress, g_player);
     mlx_hook(g_data->win, 3, 0, keyrelease, g_data);
     mlx_loop_hook(g_data->ptr, loop, g_data);
