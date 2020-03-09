@@ -6,47 +6,37 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/05 15:58:40 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/05 18:20:40 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/09 22:07:02 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void    three_d()
+void	three_d(void)
 {
-    int	i;
-	int	j;
+	int			i;
+	int			j;
 
 	i = 0;
-    while (i < NUM_RAYS)
+	while (i < NUM_RAYS)
 	{
 		j = 0;
-		float	cor_distance = g_ray[i].distance * cosf(g_ray[i].ray_angle - g_player->angle);
-		float	distance_proj_plane = ((float)WINDOW_WIDTH / 2) / tanf(FOV_ANGLE / 2);
-		float	project_wall_height = (float)(TILE_SIZE / cor_distance) * distance_proj_plane;
-		//int		wall_stripe_height = (int)project_wall_height;
-		float		wall_top_pixel = (WINDOW_HEIGHT / 2) - (project_wall_height / 2);
-		wall_top_pixel = wall_top_pixel < 0 ? 0 : wall_top_pixel;
-		
-		float		wall_bottom_pixel = (WINDOW_HEIGHT / 2) + (project_wall_height / 2);
-		wall_bottom_pixel = wall_bottom_pixel > WINDOW_HEIGHT ? WINDOW_HEIGHT : wall_bottom_pixel;
-		while (j < wall_top_pixel)
-		{
-			g_data->matrix3d[(WINDOW_WIDTH * j) + i] = 0xFF3333;
-			j++;
-		}
-		while (j < wall_bottom_pixel)
-		{
-			g_data->matrix3d[(WINDOW_WIDTH * j) + i] = 0xfff700;
-			j++;
-		}
+		threed.cor_distance = g_ray[i].distance *
+		cosf(g_ray[i].ray_angle - g_player->angle);
+		threed.dis_proj_pln = (WINDOW_WIDTH / 2) / tanf(FOV_ANGLE / 2);
+		threed.prj_wall_h = (TILE_SIZE / (threed.cor_distance == 0 ? 0.1 :
+		threed.cor_distance)) * threed.dis_proj_pln;
+		threed.wall_tp_px = (WINDOW_HEIGHT / 2) - (threed.prj_wall_h / 2);
+		threed.wall_tp_px = threed.wall_tp_px < 0 ? 0 : threed.wall_tp_px;
+		threed.wall_bottom_px = (WINDOW_HEIGHT / 2) + (threed.prj_wall_h / 2);
+		threed.wall_bottom_px = threed.wall_bottom_px > WINDOW_HEIGHT ?
+		WINDOW_HEIGHT : threed.wall_bottom_px;
+		while (j < threed.wall_tp_px)
+			g_data->matrix3d[(WINDOW_WIDTH * j++) + i] = 0xc4d8e2;
+		while (j < threed.wall_bottom_px)
+			g_data->matrix3d[(WINDOW_WIDTH * j++) + i] = g_ray[i].hit_ver ? 0xcb4154 : 0xfffff;
 		while (j < WINDOW_HEIGHT)
-		{
-			g_data->matrix3d[(WINDOW_WIDTH * j) + i] = 0x677687;
-			j++;
-		}
+			g_data->matrix3d[(WINDOW_WIDTH * j++) + i] = 0x8b5a2b;
 		i++;
 	}
 }
-
-//(cor_distance == 0 ? 0.1f : cor_distance)

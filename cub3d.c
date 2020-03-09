@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 09:07:34 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/05 18:19:34 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/09 21:59:14 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void    initialize_player()
     g_player->turn_d = 0;
     g_player->walk_d = 0;
     g_player->angle = (30 * RAD);
-    g_player->turn_spd = 1.5 * RAD;
+    g_player->turn_spd = 1 * RAD;
     g_player->walk_spd = 2;
     
 }
@@ -46,6 +46,7 @@ int		main(/*int argc, char **argv*/)
     if (!(g_player = (t_player*)malloc(sizeof(t_player))))
         return (0);
     initialize_player();
+    alloc_texture();
     g_data->ptr = mlx_init();
 	g_data->win = mlx_new_window(g_data->ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d");
     g_data->image = mlx_new_image(g_data->ptr, WINDOW_WIDTH, WINDOW_HEIGHT);

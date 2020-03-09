@@ -6,7 +6,7 @@
 #    By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/15 08:55:39 by atahiri           #+#    #+#              #
-#    Updated: 2020/03/05 17:48:35 by atahiri          ###   ########.fr        #
+#    Updated: 2020/03/09 21:39:25 by atahiri          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,7 @@ SRC = *.c
 all:$(NAME)
 
 $(NAME):
-	$(CC) $(FLAGS) -o Cub3d -l mlx -framework OpenGL -framework AppKit $(SRC) -Ofast -O3
-
+	$(CC) $(FLAGS) -o Cub3d -l mlx -framework OpenGL -framework AppKit $(SRC) -fsanitize=address -Ofast
 clean:
 	rm -rf *.o
 fclean: clean
