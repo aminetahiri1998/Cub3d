@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 09:07:34 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/13 20:47:21 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/13 23:19:53 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,23 @@ void    initialize_player()
     g_player->turn_spd = 1 * RAD;
     g_player->walk_spd = TILE_SIZE / 10;
     
+}
+
+void    handling_textures()
+{
+    int i;
+
+    i = 0;
+    texture[0].path = "./0.xpm";
+    texture[1].path = "./1.xpm";
+    texture[2].path = "./2.xpm";
+    texture[3].path = "./3.xpm";
+    while (i < 4)
+    {
+        texture[i].img = mlx_xpm_file_to_image(g_data->ptr, texture[i].path, &texture[i].width, &texture[i].height);
+        texture[i].color = (int*)mlx_get_data_addr(texture[i].img, &g_data->bits_per_pixel, &g_data->size_line, &g_data->endian);
+        i++;
+    }
 }
 
 int		main(/*int argc, char **argv*/)
@@ -47,10 +64,8 @@ int		main(/*int argc, char **argv*/)
         return (0);
     initialize_player();
     g_data->ptr = mlx_init();
-    texture[0].path = "./1337.xpm";
-    texture[0].img = mlx_xpm_file_to_image(g_data->ptr, texture[0].path, &texture[0].width, &texture[0].height);
-    texture[0].color = (int*)mlx_get_data_addr(texture[0].img, &g_data->bits_per_pixel, &g_data->size_line, &g_data->endian);
 	g_data->win = mlx_new_window(g_data->ptr, WINDOW_WIDTH_D, WINDOW_HEIGHT_D, "Cub3d");
+    handling_textures();
     if(!(g_data->image = mlx_new_image(g_data->ptr, WINDOW_WIDTH_D, WINDOW_HEIGHT_D)))
         return (0);
     g_data->image3d = mlx_new_image(g_data->ptr, WINDOW_WIDTH_D, WINDOW_HEIGHT_D);

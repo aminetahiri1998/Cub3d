@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 09:09:05 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/13 20:51:19 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/13 23:17:11 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@
 # define MAP_NUM_COLS 29
 # define WINDOW_WIDTH (MAP_NUM_COLS * TILE_SIZE)
 # define WINDOW_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
-# define WINDOW_WIDTH_D 3200
-# define WINDOW_HEIGHT_D 1800
+# define WINDOW_WIDTH_D 1600
+# define WINDOW_HEIGHT_D 900
 # define FOV_ANGLE (60 * RAD)
 # define WALL_STRIP_WIDTH 1
 # define NUM_RAYS WINDOW_WIDTH_D
@@ -130,5 +130,6 @@ void    cast_rays(void);
 void    handle_rays(int strip_id);
 float	distance_between_points(float x1, float y1, float x2, float y2);
 float	normalize_angle(float angle);
+void    handling_textures();
 
 #endif
