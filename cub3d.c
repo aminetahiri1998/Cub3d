@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 09:07:34 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/09 21:59:14 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/13 20:47:21 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 void    initialize_player()
 {
     
-    g_player->x = 60;
-    g_player->y = 60;
+    g_player->x = WINDOW_WIDTH / 2;
+    g_player->y = WINDOW_HEIGHT / 2;
     g_player->turn_d = 0;
     g_player->walk_d = 0;
     g_player->angle = (30 * RAD);
     g_player->turn_spd = 1 * RAD;
-    g_player->walk_spd = 2;
+    g_player->walk_spd = TILE_SIZE / 10;
     
 }
 
@@ -37,7 +37,7 @@ int		main(/*int argc, char **argv*/)
         // if (handle_argv(argv[1]) == 2)
         // {
         // 	write(1, "Invalid / not found Map File ...", 32);
-        // 	return(0);
+        // 	return(0);w
         // }
         //handle(argv[1], &data.parse, &data);
         //ft_init(&data);
@@ -46,12 +46,16 @@ int		main(/*int argc, char **argv*/)
     if (!(g_player = (t_player*)malloc(sizeof(t_player))))
         return (0);
     initialize_player();
-    alloc_texture();
     g_data->ptr = mlx_init();
-	g_data->win = mlx_new_window(g_data->ptr, WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d");
-    g_data->image = mlx_new_image(g_data->ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-    g_data->image3d = mlx_new_image(g_data->ptr, WINDOW_WIDTH, WINDOW_HEIGHT);
-    g_data->matrix = (int*)mlx_get_data_addr(g_data->image, &g_data->bits_per_pixel, &g_data->size_line, &g_data->endian);
+    texture[0].path = "./1337.xpm";
+    texture[0].img = mlx_xpm_file_to_image(g_data->ptr, texture[0].path, &texture[0].width, &texture[0].height);
+    texture[0].color = (int*)mlx_get_data_addr(texture[0].img, &g_data->bits_per_pixel, &g_data->size_line, &g_data->endian);
+	g_data->win = mlx_new_window(g_data->ptr, WINDOW_WIDTH_D, WINDOW_HEIGHT_D, "Cub3d");
+    if(!(g_data->image = mlx_new_image(g_data->ptr, WINDOW_WIDTH_D, WINDOW_HEIGHT_D)))
+        return (0);
+    g_data->image3d = mlx_new_image(g_data->ptr, WINDOW_WIDTH_D, WINDOW_HEIGHT_D);
+    if (!(g_data->matrix = (int*)mlx_get_data_addr(g_data->image, &g_data->bits_per_pixel, &g_data->size_line, &g_data->endian)))
+        return (0);
     g_data->matrix3d = (int*)mlx_get_data_addr(g_data->image3d, &g_data->bits_per_pixel, &g_data->size_line, &g_data->endian);
     mlx_hook(g_data->win, 2, 0, keypress, g_player);
     mlx_hook(g_data->win, 3, 0, keyrelease, g_data);

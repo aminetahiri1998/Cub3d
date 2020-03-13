@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 11:25:22 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/09 18:50:35 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/13 18:51:23 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	draw_single_ray(int strip_id)
 	y = g_player->y;
 	while (i <= g_ray[strip_id].distance)
 	{
-		g_data->matrix[((int)y * WINDOW_WIDTH) + (int)x] = 0xE84118;
 		x += cosf(g_ray[strip_id].ray_angle);
 		y += sinf(g_ray[strip_id].ray_angle);
 		i++;
@@ -55,7 +54,7 @@ void	cast_rays(void)
 	{
 		g_ray[strip_id].ray_angle = normalize_angle(ray_angle);
 		handle_rays(strip_id);
-		draw_single_ray(strip_id);
+		//draw_single_ray(strip_id);
 		ray_angle += (float)(FOV_ANGLE / NUM_RAYS);
 		strip_id++;
 	}

@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 23:26:13 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/08 23:50:01 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/12 22:46:00 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ int loop()
 {
     //mlx_clear_window(g_data->ptr, g_data->win);
     //draw_map();
-    three_d();
     move_player();
     cast_rays();
+    three_d();
     //mlx_put_image_to_window(g_data->ptr, g_data->win, g_data->image, 0, 0);
     mlx_put_image_to_window(g_data->ptr, g_data->win, g_data->image3d, 0, 0);
     return (0);

@@ -6,7 +6,7 @@
 /*   By: atahiri <atahiri@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 09:09:05 by atahiri           #+#    #+#             */
-/*   Updated: 2020/03/09 21:49:11 by atahiri          ###   ########.fr       */
+/*   Updated: 2020/03/13 20:51:19 by atahiri          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,17 @@
 # define KEYDOWN 2
 # define QUIT 17 
 
-# define TILE_SIZE 40
-# define TEXTURE_WIDTH 40
-# define TEXTURE_HEIGHT 40
+# define TILE_SIZE 400
 # define RAD (M_PI / 180)
 # define MAP_NUM_ROWS 14
 # define MAP_NUM_COLS 29
 # define WINDOW_WIDTH (MAP_NUM_COLS * TILE_SIZE)
 # define WINDOW_HEIGHT (MAP_NUM_ROWS * TILE_SIZE)
+# define WINDOW_WIDTH_D 3200
+# define WINDOW_HEIGHT_D 1800
 # define FOV_ANGLE (60 * RAD)
 # define WALL_STRIP_WIDTH 1
-# define NUM_RAYS (WINDOW_WIDTH / WALL_STRIP_WIDTH)
+# define NUM_RAYS WINDOW_WIDTH_D
 # define INT_MAXX 2147483647
 
 
@@ -84,6 +84,15 @@ typedef struct	s_struct
 	int		endian;
 }				t_struct;
 
+typedef struct s_texture
+{
+	void 	*img;
+    int 	width;
+    int 	height;
+	char	*path;
+	int		*color;
+}			t_texture;
+
 typedef	struct s_three_d
 {
 	float	cor_distance;
@@ -98,7 +107,8 @@ t_struct	*g_data;
 t_player	*g_player;
 t_ray		g_ray[NUM_RAYS];
 t_three_d	threed;
-uint32_t	*wall_texture;
+t_texture	texture[4];
+
 
 int     check_folder(char *str);
 int     handle_argv(char *str);
@@ -120,6 +130,5 @@ void    cast_rays(void);
 void    handle_rays(int strip_id);
 float	distance_between_points(float x1, float y1, float x2, float y2);
 float	normalize_angle(float angle);
-void    alloc_texture();
 
 #endif
